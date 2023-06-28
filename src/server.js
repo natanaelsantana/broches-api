@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('./config');
+const config = require('../config');
 
 const bodyParser = require('body-parser')
 
@@ -23,7 +23,7 @@ mongoose
   });
 
 // Configurando as rotas
-const brochesRouter = require('./routes/broches');
+const brochesRouter = require('../routes/broches');
 app.use('/api/broches', brochesRouter);
 
 // Iniciando o servidor
