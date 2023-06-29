@@ -5,6 +5,8 @@ const axios = require('axios');
 const fs = require('fs');
 
 
+
+
 //model
 const Broche = require('../models/broche');
 
@@ -64,6 +66,11 @@ router.post('/', upload.single('imagem'), async (req, res) => {
 // Rota para obter todos os broches
 router.get('/', async (req, res) => {
   try {
+    es.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
     const broches = await Broche.find();
     res.json(broches);
   } catch (err) {
@@ -75,6 +82,12 @@ router.get('/', async (req, res) => {
 // Rota para obter um broche específico
 router.get('/:id', async (req, res) => {
   try {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+
     const broche = await Broche.findById(req.params.id);
     
     if (!broche) {
