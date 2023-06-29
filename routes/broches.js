@@ -72,4 +72,21 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Rota para obter um broche específico
+router.get('/:id', async (req, res) => {
+  try {
+    const broche = await Broche.findById(req.params.id);
+    
+    if (!broche) {
+      return res.status(404).json({ message: 'Broche não encontrado' });
+    }
+    
+    res.json(broche);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+});
+
+
 module.exports = router;
