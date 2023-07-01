@@ -46,7 +46,7 @@ router.post("/", upload.single("imagem"), async (req, res) => {
     const novoBroche = new Broche({
       nome,
       imagem: imagemPath,
-      preco,
+      preco: parseFloat(preco.replace(",", ".")),
       descricao,
     });
 
